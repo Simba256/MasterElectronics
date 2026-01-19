@@ -137,16 +137,25 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      {/* Map Placeholder */}
+      {/* Map Section */}
       <section className="py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <svg className="w-16 h-16 mx-auto mb-4" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-              </svg>
-              <p>Map integration available</p>
-              <p className="text-sm">Add Google Maps API key in settings</p>
+          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-xl font-semibold text-gray-900">Find Us</h2>
+              <p className="mt-1 text-gray-600">Visit our store at the location below</p>
+            </div>
+            <div className="h-96">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.1234567890!2d67.1498091!3d24.9423392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb3398f6813f4c3%3A0x478abe81f9461add!2sMaster%20Electronics%20Ups%20Battery%20%26%20Solar%20Energy!5e0!3m2!1sen!2s!4v1705600000000!5m2!1sen!2s"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Master Electronics Location"
+              />
             </div>
           </div>
         </div>

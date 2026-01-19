@@ -13,9 +13,11 @@ export function slugify(text: string): string {
 export function formatPrice(price: number | string | null | undefined): string {
   if (price === null || price === undefined) return 'Contact for price'
   const numPrice = typeof price === 'string' ? parseFloat(price) : price
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-PK', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'PKR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(numPrice)
 }
 

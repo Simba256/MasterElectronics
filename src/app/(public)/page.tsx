@@ -49,7 +49,7 @@ export default async function HomePage() {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
                   Contact Us
                 </Button>
               </Link>
@@ -150,7 +150,7 @@ export default async function HomePage() {
           </div>
           <div className="text-center mt-12">
             <Link href="/services">
-              <Button variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
                 Learn More About Our Services
               </Button>
             </Link>
