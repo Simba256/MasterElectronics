@@ -44,12 +44,12 @@ export default async function HomePage() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/products">
-                <Button size="lg" className="bg-white text-primary-600 hover:bg-gray-100">
+                <Button size="lg" className="!bg-white !text-primary-600 hover:!bg-gray-100">
                   Browse Products
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="!bg-transparent !border-white !text-white hover:!bg-white/10">
                   Contact Us
                 </Button>
               </Link>
@@ -150,7 +150,7 @@ export default async function HomePage() {
           </div>
           <div className="text-center mt-12">
             <Link href="/services">
-              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
+              <Button variant="outline" className="!bg-transparent !border-white !text-white hover:!bg-white/10">
                 Learn More About Our Services
               </Button>
             </Link>
