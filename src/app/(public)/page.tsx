@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button'
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  const [featuredProducts, categories, settings] = await Promise.all([
+  const [featuredProducts, categories, settings, testimonials] = await Promise.all([
     prisma.product.findMany({
       where: { featured: true, isActive: true },
       include: { category: true },
@@ -17,6 +17,11 @@ export default async function HomePage() {
       take: 6,
     }),
     prisma.setting.findMany(),
+    prisma.testimonial.findMany({
+      where: { isActive: true, featured: true },
+      orderBy: { reviewDate: 'desc' },
+      take: 3,
+    }),
   ])
 
   const settingsMap: Record<string, Record<string, string>> = {}
@@ -157,6 +162,60 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      {testimonials.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900">What Our Customers Say</h2>
+              <p className="mt-4 text-gray-600">Trusted by businesses across the region</p>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <svg className="w-6 h-6 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <span className="text-lg font-semibold text-gray-700">Google Reviews</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                  <div className="flex mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg
+                        key={star}
+                        className={`w-5 h-5 ${star <= testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-4 italic">&ldquo;{testimonial.reviewText}&rdquo;</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900">{testimonial.customerName}</p>
+                      <p className="text-sm text-gray-500">
+                        {new Date(testimonial.reviewDate).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                        })}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1 text-xs text-gray-400">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                      {testimonial.source}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-16">

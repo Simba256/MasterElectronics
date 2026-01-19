@@ -172,6 +172,56 @@ async function main() {
   }
   console.log('Created sample products')
 
+  // Create sample testimonials
+  const sampleTestimonials = [
+    {
+      customerName: 'Ahmed Hassan',
+      rating: 5,
+      reviewText: 'Excellent service and quality products! The UPS system I purchased has been running flawlessly for over a year. Their technical support team was incredibly helpful during installation.',
+      source: 'Google',
+      reviewDate: new Date('2024-11-15'),
+      featured: true,
+      isActive: true,
+    },
+    {
+      customerName: 'Sarah Khan',
+      rating: 5,
+      reviewText: 'MasterElectronics provided us with a complete solar solution for our office. The team was professional, the installation was quick, and we have seen significant savings on our electricity bills.',
+      source: 'Google',
+      reviewDate: new Date('2024-10-28'),
+      featured: true,
+      isActive: true,
+    },
+    {
+      customerName: 'Muhammad Ali',
+      rating: 5,
+      reviewText: 'Best place for power backup solutions in the city. They have a wide range of products and the staff is very knowledgeable. Highly recommended!',
+      source: 'Google',
+      reviewDate: new Date('2024-09-12'),
+      featured: true,
+      isActive: true,
+    },
+    {
+      customerName: 'Fatima Zahra',
+      rating: 4,
+      reviewText: 'Good quality batteries at reasonable prices. The delivery was prompt and the product exactly as described. Will definitely buy again.',
+      source: 'Google',
+      reviewDate: new Date('2024-08-20'),
+      featured: false,
+      isActive: true,
+    },
+  ]
+
+  for (const testimonial of sampleTestimonials) {
+    const existing = await prisma.testimonial.findFirst({
+      where: { customerName: testimonial.customerName },
+    })
+    if (!existing) {
+      await prisma.testimonial.create({ data: testimonial })
+    }
+  }
+  console.log('Created sample testimonials')
+
   console.log('Seeding completed!')
 }
 
